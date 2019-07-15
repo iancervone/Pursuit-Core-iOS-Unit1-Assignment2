@@ -7,16 +7,21 @@ let allTheWords = ["able", "about", "account", "acid", "across", "addition", "ad
 
 
 
+
 //the code below works to choose a word from "allTheWords", then turn that word into an array saved as "letters", then hide each of those characters as white spaces in "hiddenWord"
 var answer = allTheWords.randomElement()!
 print(answer)
 var letters = Array(answer)
 print(letters)
-var hiddenWord = [String]()
+var hiddenWord = [Character]()
 for _ in letters {
 hiddenWord.append("_")
 }
 print(hiddenWord)
+
+
+
+
 
 //below are the only inputs a user can make. if they enter any other value including nil then they will be told to guess again
 let alphabet: Set<String> = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
@@ -25,10 +30,16 @@ let alphabet: Set<String> = ["a","b","c","d","e","f","g","h","i","j","k","l","m"
 var guessLimit: Int = 8
 var guessCount: Int = 0
 var wrongGuesses = [Character]()
-var guess: Character = "x"
+var guess: Character = "a"
 
+for x in letters {
+//    this is works to find a letter if the letter occurs only once in the word if it occurs more then that it does not work
 if letters.contains(guess) {
+let indexOfX = letters.index(of: guess)!
+hiddenWord[indexOfX] = guess
 print("you guessed a letter")
+print(hiddenWord)
+break
 } else
 if guessCount < guessLimit {
 guessCount = guessCount + 1
@@ -39,6 +50,50 @@ print("guess again")
 if guessCount == guessLimit {
 print("game over")
 }
+}
+
+
+
+
+////below is what happens if we change the letter and run the same block of code as above a second time with a different letter that IS IN THE ANSWER "letters"  This code works and needs t be turned into a function as a loop.
+//guess = "t"
+//if letters.contains(guess) {
+//    let indexOfX = letters.index(of: guess)!
+//    hiddenWord.insert(guess, at: indexOfX)
+//    print("you guessed a letter")
+//    print(hiddenWord)
+//} else
+//    if guessCount < guessLimit {
+//        guessCount = guessCount + 1
+//        wrongGuesses.append(guess)
+//        print("wrong guesses = \(wrongGuesses)")
+//        print("guess again")
+//    } else
+//        if guessCount == guessLimit {
+//            print("game over")
+//}
+//
+////below is what happens if we change the letter and run the same block of code as above a second time with a different letter that IS NOT IN THE ANSWER "letters"
+//guess = "x"
+//if letters.contains(guess) {
+//    //    this is where we need to locate the index(s) of the letter guessed in "letters" and set tat letter to same index(s) in "hiddenWord
+//    let indexOfX = letters.index(of: guess)!
+//    hiddenWord.insert(guess, at: indexOfX)
+//    print("you guessed a letter")
+//    print(hiddenWord)
+//} else
+//    if guessCount < guessLimit {
+//        guessCount = guessCount + 1
+//        wrongGuesses.append(guess)
+//        print("wrong guesses = \(wrongGuesses)")
+//        print("guess again")
+//    } else
+//        if guessCount == guessLimit {
+//            print("game over")
+//}
+
+
+
 
 //switch guess {
 //case letters.0:
@@ -115,6 +170,7 @@ print("game over")
 //
 //    }
 //}
+
 
 
 
